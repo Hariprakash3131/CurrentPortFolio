@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@theme {
+  --color-primary: #4C6EF5;
+  --color-secondary: #7048E8;
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-full: 9999px;
+  --radius-button: 8px;
+}
