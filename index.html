@@ -1,1614 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Python Django Developer Portfolio</title>
-    <link rel="stylesheet" href="./dist/output.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
-    />
-    <style>
-      :where([class^="ri-"])::before { content: "\f3c2"; }
-      body {
-      font-family: 'Inter', sans-serif;
-      scroll-behavior: smooth;
-      }
-      .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -37px;
-      top: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #4C6EF5;
-      border: 4px solid white;
-      z-index: 1;
-      }
-      .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: -28px;
-      top: 20px;
-      bottom: -40px;
-      width: 2px;
-      background-color: #e5e7eb;
-      z-index: 0;
-      }
-      .timeline-item:last-child::after {
-      display: none;
-      }
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-      }
-      .skill-bar {
-      position: relative;
-      height: 8px;
-      background-color: #e5e7eb;
-      border-radius: 4px;
-      overflow: hidden;
-      }
-      .skill-progress {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      background-color: #4C6EF5;
-      border-radius: 4px;
-      transition: width 1s ease-in-out;
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50">
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-      <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <a href="#" class="text-2xl font-['Pacifico'] text-primary">Hariprakash</a>
-        <div class="hidden md:flex items-center space-x-8">
-          <a
-            href="#home"
-            class="text-gray-800 hover:text-primary font-medium transition-colors"
-            >Home</a
-          >
-          <a
-            href="#projects"
-            class="text-gray-800 hover:text-primary font-medium transition-colors"
-            >Projects</a
-          >
-          <a
-            href="#skills"
-            class="text-gray-800 hover:text-primary font-medium transition-colors"
-            >Skills</a
-          >
-          <a
-            href="#experience"
-            class="text-gray-800 hover:text-primary font-medium transition-colors"
-            >Experience</a
-          >
-          <a
-            href="#contact"
-            class="text-gray-800 hover:text-primary font-medium transition-colors"
-            >Contact</a
-          >
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hariprakash — 3D Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --neon:#00f5d4;
+  --neon2:#7b2fff;
+  --accent:#ff6b6b;
+  --gold:#ffd700;
+  --dark:#050510;
+  --card-bg:rgba(10,10,40,0.85);
+  --text:#e0e6ff;
+}
+body{background:var(--dark);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+canvas#bg{position:fixed;top:0;left:0;z-index:0;width:100%;height:100%;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(5,5,16,0.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,245,212,0.1);}
+.logo{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;background:linear-gradient(135deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:2px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:rgba(224,230,255,0.7);text-decoration:none;font-size:0.9rem;letter-spacing:1px;transition:color 0.3s;text-transform:uppercase;}
+.nav-links a:hover{color:var(--neon);}
+
+/* SECTIONS */
+section{position:relative;z-index:10;min-height:100vh;}
+
+/* HERO */
+#hero{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 4rem;}
+.hero-tag{font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;color:var(--neon);border:1px solid rgba(0,245,212,0.3);padding:0.4rem 1.2rem;border-radius:20px;margin-bottom:2rem;animation:fadeInUp 0.8s ease both;}
+h1.hero-title{font-family:'Orbitron',monospace;font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:1;margin-bottom:1.5rem;animation:fadeInUp 0.8s 0.1s ease both;}
+.hero-title .line1{display:block;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-title .line2{display:block;background:linear-gradient(135deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:1.1rem;color:rgba(224,230,255,0.6);max-width:560px;line-height:1.7;margin-bottom:3rem;animation:fadeInUp 0.8s 0.2s ease both;}
+.hero-btns{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;animation:fadeInUp 0.8s 0.3s ease both;}
+.btn-primary{background:linear-gradient(135deg,var(--neon),var(--neon2));color:#050510;padding:0.9rem 2.2rem;border-radius:8px;font-weight:600;font-size:0.95rem;text-decoration:none;letter-spacing:1px;transition:transform 0.2s,box-shadow 0.2s;border:none;cursor:pointer;}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,245,212,0.4);}
+.btn-outline{background:transparent;color:var(--text);padding:0.9rem 2.2rem;border-radius:8px;font-weight:600;font-size:0.95rem;text-decoration:none;letter-spacing:1px;border:1px solid rgba(0,245,212,0.4);transition:all 0.2s;}
+.btn-outline:hover{background:rgba(0,245,212,0.08);border-color:var(--neon);}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;animation:fadeInUp 0.8s 0.4s ease both;}
+.stat{text-align:center;}
+.stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--neon);}
+.stat-label{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:rgba(224,230,255,0.5);margin-top:0.3rem;}
+
+/* 3D CANVAS SCENE */
+#scene-container{width:100%;height:500px;position:relative;z-index:10;overflow:hidden;}
+#threeCanvas{width:100%;height:100%;display:block;}
+
+/* SECTION HEADINGS */
+.section-inner{max-width:1200px;margin:0 auto;padding:5rem 2rem;}
+.section-label{font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;color:var(--neon);margin-bottom:1rem;}
+.section-title{font-family:'Orbitron',monospace;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;margin-bottom:1rem;background:linear-gradient(135deg,#fff,rgba(224,230,255,0.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.section-desc{color:rgba(224,230,255,0.5);max-width:500px;line-height:1.7;margin-bottom:3rem;}
+
+/* SKILLS */
+#skills{background:rgba(5,5,20,0.5);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;}
+.skill-card{background:var(--card-bg);border:1px solid rgba(0,245,212,0.12);border-radius:16px;padding:1.8rem;backdrop-filter:blur(20px);transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity 0.3s;}
+.skill-card:hover{transform:translateY(-6px);border-color:rgba(0,245,212,0.35);box-shadow:0 20px 60px rgba(0,245,212,0.1);}
+.skill-card:hover::before{opacity:1;}
+.skill-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.skill-icon{width:48px;height:48px;background:linear-gradient(135deg,rgba(0,245,212,0.15),rgba(123,47,255,0.15));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.skill-card-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff;}
+.skill-card-sub{font-size:0.8rem;color:rgba(224,230,255,0.4);margin-top:0.2rem;}
+.skill-item{margin-bottom:1rem;}
+.skill-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;}
+.skill-name{font-size:0.9rem;color:rgba(224,230,255,0.85);}
+.skill-pct{font-family:'Orbitron',monospace;font-size:0.8rem;color:var(--neon);}
+.skill-bar-track{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--neon),var(--neon2));transition:width 1.5s ease;width:0;}
+
+/* PROJECTS */
+#projects{background:rgba(5,5,16,0.3);}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.8rem;}
+.project-card{background:var(--card-bg);border:1px solid rgba(123,47,255,0.15);border-radius:20px;overflow:hidden;backdrop-filter:blur(20px);transition:transform 0.4s,box-shadow 0.4s,border-color 0.4s;cursor:default;}
+.project-card:hover{transform:translateY(-8px) rotateX(2deg);box-shadow:0 30px 80px rgba(123,47,255,0.2);border-color:rgba(123,47,255,0.4);}
+.project-img{height:200px;background:linear-gradient(135deg,rgba(0,245,212,0.1),rgba(123,47,255,0.2));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.project-img-text{font-family:'Orbitron',monospace;font-size:2.5rem;font-weight:900;opacity:0.25;letter-spacing:4px;color:var(--neon);}
+.project-img-badge{position:absolute;top:1rem;right:1rem;background:rgba(0,245,212,0.15);border:1px solid rgba(0,245,212,0.3);color:var(--neon);font-size:0.7rem;letter-spacing:1px;padding:0.25rem 0.75rem;border-radius:20px;text-transform:uppercase;}
+.project-body{padding:1.5rem;}
+.project-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff;margin-bottom:0.7rem;}
+.project-desc{font-size:0.85rem;color:rgba(224,230,255,0.5);line-height:1.6;margin-bottom:1.2rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.2rem;}
+.tag{font-size:0.7rem;padding:0.2rem 0.65rem;border-radius:20px;border:1px solid rgba(0,245,212,0.2);color:rgba(0,245,212,0.7);background:rgba(0,245,212,0.05);}
+.project-links{display:flex;gap:1rem;}
+.project-link{font-size:0.8rem;color:var(--neon);text-decoration:none;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:0.4rem;transition:color 0.2s;}
+.project-link:hover{color:#fff;}
+.project-link svg{width:14px;height:14px;}
+
+/* EXPERIENCE */
+#experience{background:rgba(5,5,20,0.5);}
+.exp-card{background:var(--card-bg);border:1px solid rgba(0,245,212,0.12);border-radius:20px;padding:2.5rem;max-width:800px;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.exp-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,245,212,0.03),rgba(123,47,255,0.05));pointer-events:none;}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;}
+.exp-role{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:700;color:#fff;}
+.exp-company{color:var(--neon);font-weight:500;margin-top:0.3rem;}
+.exp-date{font-size:0.8rem;letter-spacing:1px;color:rgba(224,230,255,0.4);background:rgba(0,245,212,0.07);border:1px solid rgba(0,245,212,0.15);padding:0.3rem 0.9rem;border-radius:20px;white-space:nowrap;}
+.exp-desc{color:rgba(224,230,255,0.6);line-height:1.7;margin-bottom:1.5rem;}
+.exp-bullets{list-style:none;}
+.exp-bullets li{color:rgba(224,230,255,0.55);font-size:0.9rem;padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:0.8rem;}
+.exp-bullets li::before{content:'›';color:var(--neon);font-size:1.2rem;line-height:1;flex-shrink:0;}
+
+/* CONTACT */
+#contact{background:rgba(5,5,16,0.3);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;}
+@media(max-width:700px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info h3{font-family:'Orbitron',monospace;font-size:1.2rem;color:#fff;margin-bottom:1.5rem;}
+.contact-item{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;}
+.contact-icon{width:44px;height:44px;background:rgba(0,245,212,0.08);border:1px solid rgba(0,245,212,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.contact-label{font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:rgba(224,230,255,0.4);margin-bottom:0.2rem;}
+.contact-val{font-size:0.95rem;color:rgba(224,230,255,0.85);}
+.contact-form{display:flex;flex-direction:column;gap:1.2rem;}
+.form-group input,.form-group textarea{width:100%;background:rgba(10,10,40,0.7);border:1px solid rgba(0,245,212,0.15);border-radius:10px;padding:1rem 1.2rem;color:#fff;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;resize:vertical;}
+.form-group input:focus,.form-group textarea:focus{border-color:rgba(0,245,212,0.5);}
+.form-group textarea{min-height:120px;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(224,230,255,0.3);}
+.btn-send{background:linear-gradient(135deg,var(--neon),var(--neon2));color:#050510;padding:1rem 2rem;border-radius:10px;font-weight:700;font-size:0.9rem;letter-spacing:1px;border:none;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;text-transform:uppercase;}
+.btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,245,212,0.35);}
+
+/* FOOTER */
+footer{position:relative;z-index:10;background:rgba(5,5,16,0.95);border-top:1px solid rgba(0,245,212,0.08);padding:2.5rem;text-align:center;}
+.footer-logo{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.5rem;}
+.footer-sub{font-size:0.8rem;color:rgba(224,230,255,0.3);letter-spacing:2px;text-transform:uppercase;}
+
+/* SCROLL INDICATOR */
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:rgba(224,230,255,0.3);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;animation:bounce 2s infinite;}
+.scroll-dot{width:6px;height:6px;background:var(--neon);border-radius:50%;}
+
+/* GLOW RING on section titles */
+.glow-line{width:60px;height:3px;background:linear-gradient(90deg,var(--neon),var(--neon2));border-radius:2px;margin-bottom:3rem;}
+
+/* ANIMATIONS */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:640px){
+  nav{padding:1rem 1.2rem;}
+  .nav-links{display:none;}
+  .hero-stats{gap:1.5rem;}
+  .skills-grid{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- THREE.JS BACKGROUND CANVAS -->
+<canvas id="bg"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">HARI</div>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">✦ Available for hire · Passout 2025</div>
+  <h1 class="hero-title">
+    <span class="line1">HARIPRAKASH</span>
+    <span class="line2">FULLSTACK DEV</span>
+  </h1>
+  <p class="hero-sub">Building next-generation web experiences with Python, Django, React & modern frontend technologies. From pixel-perfect UIs to scalable backends.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View Projects →</a>
+    <a href="https://drive.google.com/file/d/14kDe5EQ99WGRKLPy6gSHdpYmLrwj1Gia/view?usp=drive_link" target="_blank" class="btn-outline">Download CV ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num">6+</div><div class="stat-label">Technologies</div></div>
+    <div class="stat"><div class="stat-num">2025</div><div class="stat-label">Passout</div></div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-dot"></div>Scroll Down</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">My Expertise</p>
+    <h2 class="section-title reveal">Skills & Technologies</h2>
+    <div class="glow-line reveal"></div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <div class="skill-icon">⚙️</div>
+          <div><div class="skill-card-title">Backend</div><div class="skill-card-sub">Server-side Power</div></div>
         </div>
-        <button
-          id="mobile-menu-button"
-          class="md:hidden w-10 h-10 flex items-center justify-center text-gray-800"
-        >
-          <i class="ri-menu-line ri-lg"></i>
-        </button>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Python</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Django</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Node.js</span><span class="skill-pct">60%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="60"></div></div>
+        </div>
       </div>
-      <!-- Mobile menu -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-white shadow-lg absolute w-full"
-      >
-        <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
-          <a
-            href="#home"
-            class="text-gray-800 hover:text-primary font-medium transition-colors py-2"
-            >Home</a
-          >
-          <a
-            href="#projects"
-            class="text-gray-800 hover:text-primary font-medium transition-colors py-2"
-            >Projects</a
-          >
-          <a
-            href="#skills"
-            class="text-gray-800 hover:text-primary font-medium transition-colors py-2"
-            >Skills</a
-          >
-          <a
-            href="#experience"
-            class="text-gray-800 hover:text-primary font-medium transition-colors py-2"
-            >Experience</a
-          >
-          <a
-            href="#contact"
-            class="text-gray-800 hover:text-primary font-medium transition-colors py-2"
-            >Contact</a
-          >
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <div class="skill-icon">🗄️</div>
+          <div><div class="skill-card-title">Database & Tools</div><div class="skill-card-sub">Data Storage</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">MySQL</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">MongoDB</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
         </div>
       </div>
-    </header>
-    <!-- Hero Section -->
-    <section
-      id="home"
-      class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100"
-    >
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6"
-            >
-              Fullstack <span class="text-primary">Developer</span>
-            </h1>
-            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-             To associate myself with a forward-thinking organization where I can
-leverage my innovative skills and technical expertise as a Full Stack
-Developer, contributing meaningfully to the organization's success while
-continuously growing in my professional career through challenging
-projects and collaborative learning opportunities.
-            </p>
-            <div class="flex flex-wrap gap-4 mb-8">
-              <a
-                href="#projects"
-                class="group bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-button font-medium transition-all whitespace-nowrap flex items-center"
-              >
-                View Projects
-                <i
-                  class="ri-arrow-right-line ml-2 transition-transform group-hover:translate-x-1"
-                ></i>
-              </a>
-              <a
-                href="https://drive.google.com/file/d/14kDe5EQ99WGRKLPy6gSHdpYmLrwj1Gia/view?usp=drive_link"
-                class="group bg-white hover:bg-gray-50 text-gray-900 px-8 py-4 rounded-button font-medium transition-all whitespace-nowrap flex items-center border-2 border-gray-200"
-              >
-                Download CV
-                <i
-                  class="ri-download-line ml-2 transition-transform group-hover:translate-y-0.5"
-                ></i>
-              </a>
-            </div>
-          </div>
-          <div class="relative">
-            <img
-              src="./Image/20240113112559_IMG_3746.JPG"
-              alt="Developer"
-              class="rounded-2xl shadow-2xl w-72 h-72 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] object-cover mx-auto"
-            />
-            <div
-              class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg flex items-center gap-4"
-            >
-              <div
-                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
-              >
-                <i class="ri-code-s-slash-line ri-lg text-primary"></i>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-900">Fresher</p>
-                <p class="text-sm text-gray-500">Passout-2025</p>
-              </div>
-            </div>
-          </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-header">
+          <div class="skill-icon">🎨</div>
+          <div><div class="skill-card-title">Frontend</div><div class="skill-card-sub">Client-side Magic</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">React</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">HTML / CSS</span><span class="skill-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Tailwind CSS</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
         </div>
       </div>
-    </section>
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 md:py-24 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <div
-            class="inline-flex items-center justify-center bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4"
-          >
-            My Expertise
-          </div>
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Skills & Technologies
-          </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Specialized in Python and Django with extensive experience in
-            building web applications and RESTful APIs.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <!-- Backend Development -->
-          <div
-            class="bg-gradient-to-br from-white to-gray-50 shadow-lg rounded-2xl p-8 hover:shadow-xl transition-all"
-          >
-            <div class="flex items-center gap-4 mb-8">
-              <div
-                class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-xl"
-              >
-                <i class="ri-code-s-slash-line ri-2x text-primary"></i>
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold">Backend</h3>
-                <p class="text-gray-500">Core Technologies</p>
-              </div>
-            </div>
-            <div class="space-y-6">
-              <!-- Python -->
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                    alt="Python"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">Python</span>
-                    <span>75%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 95%"></div>
-                  </div>
-                </div>
-              </div>
-        
-              <!-- Django -->
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
-                    alt="Django"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">Django</span>
-                    <span>70%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 90%"></div>
-                  </div>
-                </div>
-              </div>
-        
-              <!-- Node.js -->
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                    alt="Node.js"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">Node.js</span>
-                    <span>60%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%"></div>
-                  </div>
-                </div>
-              </div>
-        
-            </div>
-          </div>
-        
-        
-          <!-- Database & Tools -->
-          <div
-  class="bg-gradient-to-br from-white to-gray-50 shadow-lg rounded-2xl p-8 hover:shadow-xl transition-all"
->
-  <div class="flex items-center gap-4 mb-8">
-    <div
-      class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-xl"
-    >
-      <i class="ri-database-2-line ri-2x text-primary"></i>
-    </div>
-    <div>
-      <h3 class="text-xl font-semibold">Database & Tools</h3>
-      <p class="text-gray-500">Storage</p>
     </div>
   </div>
-  <div class="space-y-6">
-    <!-- MySQL Card -->
-    <div
-      class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-    >
-      <div class="w-12 h-12 flex items-center justify-center">
-        <img
-          src="./Image/mysql-logo-pure.svg"
-          alt="MySQL"
-          class="w-10 h-10"
-        />
-      </div>
-      <div class="flex-1">
-        <div class="flex justify-between mb-2">
-          <span class="font-medium">MySQL</span>
-          <span>70%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 90%"></div>
-        </div>
-      </div>
-    </div>
+</section>
 
-    <!-- MongoDB Card -->
-    <div
-      class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-    >
-      <div class="w-12 h-12 flex items-center justify-center">
-        <img
-          src="./Image/images.png"
-          alt="MongoDB"
-          class="w-10 h-10"
-        />
-      </div>
-      <div class="flex-1">
-        <div class="flex justify-between mb-2">
-          <span class="font-medium">MongoDB</span>
-          <span>80%</span>
-        </div>
-        <div class="skill-bar">
-          <div class="skill-progress" style="width: 80%"></div>
-        </div>
-      </div>
-    </div>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label reveal">What I've Built</p>
+    <h2 class="section-title reveal">Project Showcase</h2>
+    <div class="glow-line reveal"></div>
+    <div class="projects-grid">
 
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(0,245,212,0.08),rgba(123,47,255,0.15))">
+          <span class="project-img-text">📷</span>
+          <span class="project-img-badge">Live</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Photography — Fotokaran</div>
+          <div class="project-desc">Photography website featuring dynamic galleries, client proofing, secure bookings, and easy payments. Mobile-first, SEO-ready, with smooth booking flow.</div>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Bootstrap</span></div>
+          <div class="project-links">
+            <a href="https://photograpy-ten.vercel.app/" target="_blank" class="project-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/Hariprakash3131/Photograpy" target="_blank" class="project-link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(255,107,107,0.08),rgba(0,245,212,0.12))">
+          <span class="project-img-text">🎓</span>
+          <span class="project-img-badge">Django</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Education Donation Website</div>
+          <div class="project-desc">Secure platform connecting donors with students needing financial help. Students apply for aid; donors give to individuals or a general fund.</div>
+          <div class="tags"><span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">Python</span><span class="tag">Bootstrap</span></div>
+          <div class="project-links">
+            <a href="https://github.com/Hariprakash3131/Donationweb" target="_blank" class="project-link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(123,47,255,0.1),rgba(0,245,212,0.08))">
+          <span class="project-img-text">🐾</span>
+          <span class="project-img-badge">Live</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Pet Adopt</div>
+          <div class="project-desc">Platform connecting adopters with pets in need of a home. Browse animals, submit adoption applications, and track status. Admin dashboard included.</div>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span></div>
+          <div class="project-links">
+            <a href="https://dog-adoptt.netlify.app/" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Live Demo</a>
+            <a href="https://github.com/Hariprakash3131/dog" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(255,215,0,0.06),rgba(255,107,107,0.1))">
+          <span class="project-img-text">🛒</span>
+          <span class="project-img-badge">Live</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">FreshCart — Groceries</div>
+          <div class="project-desc">Fresh fruits, vegetables, and groceries delivered to your doorstep. Quick ordering, secure payments, and fast delivery with exclusive deals and smooth mobile experience.</div>
+          <div class="tags"><span class="tag">React</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span></div>
+          <div class="project-links">
+            <a href="https://groceries-swart-kappa.vercel.app/" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(0,245,212,0.06),rgba(0,100,200,0.12))">
+          <span class="project-img-text">🚌</span>
+          <span class="project-img-badge">Live</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Bus Booking UI</div>
+          <div class="project-desc">Redbus-inspired single-page interface featuring destination search, date selection, real-time seat layout, pricing, available offers, and smooth responsive booking flow.</div>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Tailwind</span></div>
+          <div class="project-links">
+            <a href="https://684fc669bb495609c1cc98c2--redbusdemo.netlify.app/" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Live Demo</a>
+            <a href="https://github.com/Hariprakash3131/redbusdemo" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(255,107,107,0.08),rgba(123,47,255,0.12))">
+          <span class="project-img-text">📷</span>
+          <span class="project-img-badge">Live</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Instagram Clone</div>
+          <div class="project-desc">Social networking platform using React with user profiles, photo/video posts, comments, real-time chat, and notification support. Modern Instagram-style UI.</div>
+          <div class="tags"><span class="tag">React</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="project-links">
+            <a href="https://insta-website.vercel.app/" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Live Demo</a>
+            <a href="https://github.com/Hariprakash3131/Insta-website" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(0,245,212,0.05),rgba(0,180,120,0.12))">
+          <span class="project-img-text">🔐</span>
+          <span class="project-img-badge">Node.js</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Node Login & Signup</div>
+          <div class="project-desc">Full-stack authentication system with login, signup, and dashboard. Node.js, MongoDB, React. Secure registration, password hashing, and responsive dashboard.</div>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">React</span><span class="tag">MongoDB</span><span class="tag">JavaScript</span></div>
+          <div class="project-links">
+            <a href="https://github.com/Hariprakash3131/NodeLoginAndSignup.git" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-img" style="background:linear-gradient(135deg,rgba(123,47,255,0.08),rgba(255,215,0,0.08))">
+          <span class="project-img-text">🌐</span>
+          <span class="project-img-badge">Live</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">SWPOS — Surfersway</div>
+          <div class="project-desc">Landing page for Surfersway with smooth animations and hover effects. Integrated with Frappe ERP backend for business operations and data management.</div>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
+          <div class="project-links">
+            <a href="https://development.surfersway.in/bizlyft/templates/Template%2013/swpos/index.php" target="_blank" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
-</div>
+</section>
 
-          <!-- Frontend & APIs -->
-          <div
-            class="bg-gradient-to-br from-white to-gray-50 shadow-lg rounded-2xl p-8 hover:shadow-xl transition-all"
-          >
-            <div class="flex items-center gap-4 mb-8">
-              <div
-                class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-xl"
-              >
-                <i class="ri-layout-line ri-2x text-primary"></i>
-              </div>
-              <div>
-                <h3 class="text-xl font-semibold">Frontend</h3>
-                <p class="text-gray-500">Client & Integration</p>
-              </div>
-            </div>
-            <div class="space-y-6">
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                    alt="JavaScript"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">JavaScript</span>
-                    <span>75%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 85%"></div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                    alt="React"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">React</span>
-                    <span>70%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 80%"></div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="./Image/html-1.svg"
-                    alt="GraphQL"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">HTML</span>
-                    <span>90%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 75%"></div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm"
-              >
-                <div class="w-12 h-12 flex items-center justify-center">
-                  <img
-                    src="./Image/css-3.svg"
-                    alt="Tailwind CSS"
-                    class="w-10 h-10"
-                  />
-                </div>
-                <div class="flex-1">
-                  <div class="flex justify-between mb-2">
-                    <span class="font-medium">CSS</span>
-                    <span>80%</span>
-                  </div>
-                  <div class="skill-bar">
-                    <div class="skill-progress" style="width: 90%"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label reveal">Work History</p>
+    <h2 class="section-title reveal">Professional Experience</h2>
+    <div class="glow-line reveal"></div>
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Frontend Developer</div>
+          <div class="exp-company">ThinkCove Technologies, Chennai</div>
+        </div>
+        <div class="exp-date">May 2024 – June 2024</div>
+      </div>
+      <p class="exp-desc">Developed and enhanced user interfaces using HTML, CSS, JavaScript, and Bootstrap. Gained practical experience in responsive web design, debugging, and cross-browser compatibility. Collaborated with a development team to deliver clean, user-friendly, and accessible web pages.</p>
+      <ul class="exp-bullets">
+        <li>Contributed to the development of responsive UI components for a live web application.</li>
+        <li>Assisted in implementing user authentication and form validation using JavaScript.</li>
+        <li>Fixed UI bugs and optimised pages for full mobile responsiveness.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label reveal">Let's Talk</p>
+    <h2 class="section-title reveal">Get In Touch</h2>
+    <div class="glow-line reveal"></div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Contact Information</h3>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div><div class="contact-label">Email</div><div class="contact-val">harip162931@gmail.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><div class="contact-label">Location</div><div class="contact-val">Tirunelveli, Tamil Nadu</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><div class="contact-label">Phone</div><div class="contact-val">+91 6382947727</div></div>
+        </div>
+        <div style="margin-top:2rem;display:flex;gap:1rem;">
+          <a href="https://github.com/Hariprakash3131" target="_blank" style="width:44px;height:44px;background:rgba(0,245,212,0.08);border:1px solid rgba(0,245,212,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.2rem;transition:background 0.2s;" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="rgba(0,245,212,0.8)" width="22" height="22"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/hariprakash-m-02646435b/" target="_blank" style="width:44px;height:44px;background:rgba(0,245,212,0.08);border:1px solid rgba(0,245,212,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background 0.2s;" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="rgba(0,245,212,0.8)" width="22" height="22"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
         </div>
       </div>
-    </section>
-    <!-- Projects Section -->
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 md:py-24 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Project Showcase
-          </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            A collection of my most significant projects built with Python,
-            Django, and other technologies.
-          </p>
-        </div>
-        <div class="mb-8 flex justify-center">
-          <div class="inline-flex bg-gray-100 rounded-full p-1">
-            <button
-              class="filter-btn active px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap bg-primary text-white"
-              data-filter="all"
-            >
-              All Projects
-            </button>
-            <button
-              class="filter-btn px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
-              data-filter="django"
-            >
-              Django
-            </button>
-            
-            <button
-              class="filter-btn px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
-              data-filter="fullstack"
-            >
-              Full Stack
-            </button>
-          </div>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Project 1 -->
-           <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/image1.png"
-                alt="E-commerce Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Photograpy</h3>
-              <p class="text-gray-600 mb-4">
-             Capture life's moments with Fotokaran, a clean, fast photography website featuring dynamic galleries, client proofing, secure bookings, and easy payments. Showcase events, portraits, and product shoots with HD images, testimonials, and transparent pricing. Mobile-first design, SEO-ready pages, and a contact form convert visitors into happy clients. Blog, FAQs, and support.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                  <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >React</span
-                >
-                 <span
-                  class="bg-rose-100 text-rose-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Bootstrap</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                 <a
-                  href="https://photograpy-ten.vercel.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/Photograpy"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Project 2 -->
-          
-          <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/Screenshot_24-6-2025_02922_127.0.0.1.jpeg"
-                alt="E-commerce Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">The Education Donation Website</h3>
-              <p class="text-gray-600 mb-4">
-               Built a secure, user-friendly website that connects donors with students needing financial help. Students apply for aid, and donors give to individuals or a general fund.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Django</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >MySQL</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                  <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Python</span
-                >
-                 <span
-                  class="bg-rose-100 text-rose-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Bootstrap</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                
-                <a
-                  href="https://github.com/Hariprakash3131/Donationweb"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Project 3 -->
-          <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="api django"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/Screenshot_24-6-2025_03448_.jpeg"
-                alt="RESTful API Service"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Pet-Adopt</h3>
-              <p class="text-gray-600 mb-4">
-               Built a secure, user-friendly website that connects adopters with pets in need of a home. Users can browse available animals, submit adoption applications, and track their status. Admins manage listings and view adopter details through an intuitive UI.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Bootstrap</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://dog-adoptt.netlify.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/dog"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Project 3 -->
-          <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="fullstack django"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/Screenshot_24-6-2025_1098_.jpeg"
-                alt="Project Management Tool"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">
-                Flipkart
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Created a single-page, Flipkart-style UI for a pet adoption platform. Users can browse pets like products, view basic details, and apply for adoption—all from one clean, user-friendly page.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >BootStrap</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://flip-ecom-c2882d.netlify.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href=""
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Project 4 -->
-          <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="api django"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/redbus.jpeg"
-                alt="Data Analysis Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Bus </h3>
-              <p class="text-gray-600 mb-4">
-               Created a single-page bus booking interface inspired by Redbus, featuring search by destination and drop locations, date selection, real-time seat layout, pricing display, available offers, and a smooth, responsive booking flow—all within a clean UI.
-
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Tailwind css</span
-                >
-                
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://684fc669bb495609c1cc98c2--redbusdemo.netlify.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/redbusdemo"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Project 5 -->  
-          <div
-          class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-          data-category="api django"
-        >
-          <div class="h-48 overflow-hidden">
-            <img
-              src="./Image/login.png"
-              alt="Data Analysis Platform"
-              class="w-full h-full object-cover object-top"
-            />
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Node Project & Login Signup</h3>
-            <p class="text-gray-600 mb-4">
-              Developed a full-stack user authentication system with login, signup, and dashboard using Node.js, MongoDB, and React.js. Features include secure registration, login validation, password hashing, database integration, and a responsive dashboard with a clean, intuitive UI.
-            </p>
-            
-            
-          
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">HTML</span>
-                <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">CSS</span>
-                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
-                <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">React.js</span>
-                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">JavaScript</span>
-                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">MongoDB</span>
-              </div>
-              
-            
-            <div class="flex space-x-3">
-              <a
-                href="http://192.168.1.2:3000/"
-                class="text-primary hover:text-primary/80 font-medium flex items-center"
-              >
-                <i class="ri-link mr-1"></i> Live Demo
-              </a>
-              <a
-                href="https://github.com/Hariprakash3131/NodeLoginAndSignup.git"
-                class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-              >
-                <i class="ri-github-fill mr-1"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-          <!-- Project 6 -->
-          <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/insta.jpeg"
-                alt="Social Network"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">
-                Instagram Clone
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Built a social networking platform using React, featuring user profiles, photo/video posts, comments, real-time chat, and notification support. The UI mimics Instagram’s modern design with responsive layouts and seamless user interactions.
-
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >React</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                <a
-                  href="https://insta-website.vercel.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/Insta-website"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-             <!-- Project -->
-                     <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/image2.png"
-                alt="E-commerce Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">FreshCart – Fruits & Groceries Online</h3>
-              <p class="text-gray-600 mb-4">
-                FreshCart delivers fresh fruits, vegetables, and groceries to your doorstep. Shop seasonal produce, organic items, and pantry essentials. Enjoy quick ordering, secure payments, and fast delivery with exclusive deals, all through a smooth, mobile-friendly shopping experience.
-
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                  <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >React</span
-                >
-                 <span
-                  class="bg-rose-100 text-rose-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Bootstrap</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                 <a
-                  href="https://groceries-swart-kappa.vercel.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="github.com/Hariprakash3131/Groceries"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-         
-          <!-- Project -->
-                     <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/image3.png"
-                alt="E-commerce Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Animated Image Gallery</h3>
-              <p class="text-gray-600 mb-4">
-AnimPix is a lightweight, mobile-friendly website showcasing images with smooth animations and hover effects. Features include a floating hero image, interactive gallery cards, and subtle motion, perfect for portfolios, product showcases, or creative presentations.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                 
-              </div>
-              <div class="flex space-x-3">
-                 <a
-                  href="https://astonishing-souffle-3e73d8.netlify.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/Animation-Cartoon-image"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-         
-          <!-- Project -->
-                     <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category=""
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/swpos.png"
-                alt=""
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">SWPOS</h3>
-            <p class="text-gray-600 mb-4">
-SWPOS is a lightweight, mobile-friendly landing page developed for Surfersway. 
-It features smooth animations, hover effects, and an interactive layout.
-The frontend is designed for performance and user experience, with seamless 
-integration to a Frappe ERP backend for business operations and data management.
-</p>
-
-              <div class="flex flex-wrap gap-2 mb-4">
-                
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                  <span
-                  class="bg-pink-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >PHP</span
-                >
-                 
-              </div>
-              <div class="flex space-x-3">
-                 <a
-                  href="https://development.surfersway.in/bizlyft/templates/Template%2013/swpos/index.php"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <!-- <a
-                  href="https://github.com/Hariprakash3131/Animation-Cartoon-image"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a> -->
-              </div>
-            </div>
-          </div>
-         
-
-          <!--Project -->
-<div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/Screenshot (45).png"
-                alt="E-commerce Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">AeroPage Portfolio</h3>
-              <p class="text-gray-600 mb-4">
-Designed and developed an Aero portfolio page using HTML, CSS, and Tailwind CSS, featuring a modern layout with custom UI components and a gradient-overlay background image for a clean, professional visual design.
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-               
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Tailwind</span
-                >
-                <span
-                  class="bg-blue-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                 
-              </div>
-              <div class="flex space-x-3">
-                 <a
-                  href="https://nimble-profiterole-67aae0.netlify.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/Aero-Cube84.git"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!--Project -->
-           <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django fullstack"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/image.png"
-                alt="E-commerce Platform"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">React Form</h3>
-              <p class="text-gray-600 mb-4">
-                 Designed and implemented a responsive sign-up form in React, featuring fields for name, email, phone, and country selection. Styled with custom CSS and a gradient-overlay background image for a modern, professional look, ensuring usability across devices with a clean and accessible UI.
-
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                 <span
-                  class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >React</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-                <span
-                  class="bg-blue-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                 
-              </div>
-              <div class="flex space-x-3">
-                 <a
-                  href="https://justreactform.netlify.app/"
-                  class="text-primary hover:text-primary/80 font-medium flex items-center"
-                >
-                  <i class="ri-link mr-1"></i> Live Demo
-                </a>
-                <a
-                  href="https://github.com/Hariprakash3131/ReactForm"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 6 -->
-          <div
-            class="project-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            data-category="django api"
-          >
-            <div class="h-48 overflow-hidden">
-              <img
-                src="./Image/redbus1.jpeg"
-                alt="Booking System"
-                class="w-full h-full object-cover object-top"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">
-                RedBus
-              </h3>
-              <p class="text-gray-600 mb-4">
-              Developed a Redbus-inspired single-page UI featuring a responsive home page with destination search, and integrated login/signup functionality using a Django backend. User authentication is handled securely via Django views and models, ensuring smooth communication between frontend and backend.
-
-              </p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Django</span
-                >
-                <span
-                  class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Html</span
-                >
-                <span
-                  class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >Css</span
-                >
-                <span
-                  class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded"
-                  >JavaScript</span
-                >
-              </div>
-              <div class="flex space-x-3">
-                
-                <a
-                  href="https://github.com/Hariprakash3131/Redbus-clone"
-                  class="text-gray-700 hover:text-gray-900 font-medium flex items-center"
-                >
-                  <i class="ri-github-fill mr-1"></i> GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="contact-form reveal">
+        <div class="form-group"><input type="text" placeholder="Your Name"/></div>
+        <div class="form-group"><input type="email" placeholder="Your Email"/></div>
+        <div class="form-group"><input type="text" placeholder="Subject"/></div>
+        <div class="form-group"><textarea placeholder="Your message..."></textarea></div>
+        <button class="btn-send" onclick="alert('Thanks for reaching out! Hariprakash will get back to you soon.')">Send Message →</button>
       </div>
-    </section>
-    <!-- Experience Section -->
-    <section id="experience" class="py-16 md:py-24 bg-white">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Professional Experience
-          </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          I'm a Frontend Developer with experience working on different projects and roles, building responsive and user-friendly websites.
-          </p>
-        </div>
-        <div class="max-w-3xl mx-auto relative pl-10">
-          <!-- Timeline Line -->
-          <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-          <!-- Experience 1 -->
-          <div class="timeline-item relative pl-8">
-            <div
-              class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow"
-            >
-              <div class="flex flex-wrap justify-between items-start mb-4">
-                <div>
-                  <h3 class="text-xl font-semibold">
-                    Frontend Developer
-                  </h3>
-                  <p class="text-primary font-medium">ThinkCove Technologies Chennai</p>
-                </div>
-                <p class="text-gray-500 text-sm">Mat 2024 - June 2024</p>
-              </div>
-              <p class="text-gray-600 mb-4">
-                Developed and enhanced user interfaces using HTML, CSS, JavaScript, and
-Bootstrap. Gained practical experience in responsive web design,
-debugging, and cross-browser compatibility. Collaborated effectively with
-a development team to deliver clean, user-friendly, and accessible web
-pages.
-              </p>
-              <ul class="list-disc list-inside text-gray-600 space-y-2">
-                <li>
-                  Contributed to the development of responsive UI components for a web application.
-                </li>
-                <li>
-                 Assisted in implementing user authentication and form validation using JavaScript.
-                </li>
-                <li>
-                 Fixed UI bugs and optimized pages for mobile responsiveness.
-                </li>
-                
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Get In Touch
-          </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Interested in working together? Feel free to contact me for any
-            project or collaboration.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <!-- Contact Info -->
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-            <div class="space-y-6">
-              <div class="flex items-start">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4"
-                >
-                  <i class="ri-mail-line ri-lg text-primary"></i>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-500 mb-1">Email</p>
-                  <p class="font-medium">harip162931@gmail.com</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4"
-                >
-                  <i class="ri-map-pin-line ri-lg text-primary"></i>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-500 mb-1">Location</p>
-                  <p class="font-medium">Tirunelveli,Tamilnadu</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div
-                  class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full mr-4"
-                >
-                  <i class="ri-phone-line ri-lg text-primary"></i>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-500 mb-1">Phone</p>
-                  <p class="font-medium">+91 6382947727</p>
-                </div>
-              </div>
-            </div>
-            <div class="mt-8">
-              <h4 class="text-lg font-semibold mb-4">Connect With Me</h4>
-              <div class="flex space-x-4">
-                <a
-                  href="#"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                >
-                  <i class="ri-github-fill ri-lg text-gray-700"></i>
-                </a>
-                <a
-                  href="#"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                >
-                  <i class="ri-linkedin-fill ri-lg text-gray-700"></i>
-                </a>
-                <a
-                  href="#"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                >
-                  <i class="ri-twitter-fill ri-lg text-gray-700"></i>
-                </a>
-                <a
-                  href="#"
-                  class="w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                >
-                  <i class="ri-stack-overflow-line ri-lg text-gray-700"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Contact Form -->
-          <div class="bg-white rounded-lg shadow-lg p-8">
-            <h3 class="text-2xl font-semibold mb-6">Send Me a Message</h3>
-            <form id="contact-form">
-              <div class="mb-6">
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                  >Your Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                  placeholder=""
-                  required
-                />
-              </div>
-              <div class="mb-6">
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                  >Your Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                  placeholder=""
-                  required
-                />
-              </div>
-              <div class="mb-6">
-                <label
-                  for="subject"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                  >Subject</label
-                >
-                <input
-                  type="text"
-                  id="subject"
-                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors"
-                  placeholder=""
-                  required
-                />
-              </div>
-              <div class="mb-6">
-                <label
-                  for="message"
-                  class="block text-sm font-medium text-gray-700 mb-2"
-                  >Message</label
-                >
-                <textarea
-                  id="message"
-                  rows="5"
-                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-colors resize-none"
-                  placeholder="Your message here..."
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-button transition-colors whitespace-nowrap"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-      <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-6 md:mb-0">
-            <a href="#" class="text-2xl font-['Pacifico'] text-white">Hariprakash</a>
-            <p class="mt-2 text-gray-400">Fullstack Developer</p>
-          </div>
-          <div class="flex flex-wrap justify-center gap-6 mb-6 md:mb-0">
-            <a
-              href="#home"
-              class="text-gray-300 hover:text-white transition-colors"
-              >Home</a
-            >
-            <a
-              href="#projects"
-              class="text-gray-300 hover:text-white transition-colors"
-              >Projects</a
-            >
-            <a
-              href="#skills"
-              class="text-gray-300 hover:text-white transition-colors"
-              >Skills</a
-            >
-            <a
-              href="#experience"
-              class="text-gray-300 hover:text-white transition-colors"
-              >Experience</a
-            >
-            <a
-              href="#contact"
-              class="text-gray-300 hover:text-white transition-colors"
-              >Contact</a
-            >
-          </div>
-          <div class="flex space-x-4">
-            <a
-              href="https://github.com/Hariprakash3131"
-              class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
-            >
-              <i class="ri-github-fill ri-lg"></i>
-            </a>
-            <a
-              href="www.linkedin.com/in/hariprakash-m-02646435b/"
-              class="w-10 h-10 flex items-center justify-center bg-gray-800 hover:bg-gray-700 rounded-full transition-colors"
-            >
-              <i class="ri-linkedin-fill ri-lg"></i>
-            </a>
-           
-          </div>
-        </div>
-        <div
-          class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-         
-        </div>
-      </div>
-    </footer>
-    <!-- Back to top button -->
-    <button
-      id="back-to-top"
-      class="fixed bottom-6 right-6 w-12 h-12 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300"
-    >
-      <i class="ri-arrow-up-line ri-lg"></i>
-    </button>
-    <!-- Scripts -->
-    <script id="navigation-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-        mobileMenuButton.addEventListener("click", function () {
-          mobileMenu.classList.toggle("hidden");
-          // Change icon based on menu state
-          const icon = mobileMenuButton.querySelector("i");
-          if (mobileMenu.classList.contains("hidden")) {
-            icon.className = "ri-menu-line ri-lg";
-          } else {
-            icon.className = "ri-close-line ri-lg";
-          }
-        });
-        // Close mobile menu when clicking on a link
-        const mobileLinks = mobileMenu.querySelectorAll("a");
-        mobileLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            mobileMenu.classList.add("hidden");
-            mobileMenuButton.querySelector("i").className = "ri-menu-line ri-lg";
-          });
-        });
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href");
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              window.scrollTo({
-                top: targetElement.offsetTop - 80, // Adjust for header height
-                behavior: "smooth",
-              });
-            }
-          });
-        });
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">HARIPRAKASH</div>
+  <div class="footer-sub">Fullstack Developer · Passout 2025</div>
+</footer>
+
+<!-- THREE.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ---- THREE.JS 3D BACKGROUND ----
+const canvas = document.getElementById('bg');
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+camera.position.z = 30;
+
+// STARFIELD
+const starGeo = new THREE.BufferGeometry();
+const starCount = 3000;
+const starPos = new Float32Array(starCount * 3);
+for(let i=0; i<starCount*3; i++) starPos[i] = (Math.random()-0.5)*300;
+starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+const starMat = new THREE.PointsMaterial({color:0xaaaaff, size:0.18, transparent:true, opacity:0.7});
+scene.add(new THREE.Points(starGeo, starMat));
+
+// FLOATING GEOMETRIC SHAPES
+const shapes = [];
+const shapeGeos = [
+  new THREE.OctahedronGeometry(2, 0),
+  new THREE.TetrahedronGeometry(2, 0),
+  new THREE.IcosahedronGeometry(1.5, 0),
+  new THREE.OctahedronGeometry(1.2, 0),
+  new THREE.TetrahedronGeometry(1.5, 0),
+];
+const colors = [0x00f5d4, 0x7b2fff, 0xff6b6b, 0x00d4ff, 0xff9500];
+for(let i=0; i<18; i++){
+  const geo = shapeGeos[i%shapeGeos.length];
+  const mat = new THREE.MeshBasicMaterial({
+    color: colors[i%colors.length],
+    wireframe: true,
+    transparent: true,
+    opacity: 0.12 + Math.random()*0.1
+  });
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.position.set((Math.random()-0.5)*80, (Math.random()-0.5)*80, (Math.random()-0.5)*40 - 10);
+  mesh.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
+  mesh.userData = {
+    rx: (Math.random()-0.5)*0.006,
+    ry: (Math.random()-0.5)*0.008,
+    fy: Math.random()*0.01+0.003,
+    initY: mesh.position.y,
+    phase: Math.random()*Math.PI*2
+  };
+  scene.add(mesh);
+  shapes.push(mesh);
+}
+
+// LARGE CENTRAL TORUS
+const torusMat = new THREE.MeshBasicMaterial({color:0x00f5d4, wireframe:true, transparent:true, opacity:0.05});
+const torus = new THREE.Mesh(new THREE.TorusGeometry(16,0.4,8,80), torusMat);
+torus.rotation.x = Math.PI/2.5;
+scene.add(torus);
+
+const torus2Mat = new THREE.MeshBasicMaterial({color:0x7b2fff, wireframe:true, transparent:true, opacity:0.04});
+const torus2 = new THREE.Mesh(new THREE.TorusGeometry(22,0.3,8,100), torus2Mat);
+torus2.rotation.x = Math.PI/3;
+torus2.rotation.z = Math.PI/6;
+scene.add(torus2);
+
+// MOUSE PARALLAX
+let mx=0, my=0;
+document.addEventListener('mousemove', e=>{
+  mx = (e.clientX/window.innerWidth-0.5)*0.5;
+  my = (e.clientY/window.innerHeight-0.5)*0.5;
+});
+
+// RESIZE
+window.addEventListener('resize',()=>{
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+let t=0;
+function animate(){
+  requestAnimationFrame(animate);
+  t+=0.012;
+  camera.position.x += (mx*6 - camera.position.x)*0.04;
+  camera.position.y += (-my*4 - camera.position.y)*0.04;
+  camera.lookAt(scene.position);
+  torus.rotation.z += 0.001;
+  torus2.rotation.y += 0.0008;
+  shapes.forEach(s=>{
+    s.rotation.x += s.userData.rx;
+    s.rotation.y += s.userData.ry;
+    s.position.y = s.userData.initY + Math.sin(t*s.userData.fy*60 + s.userData.phase)*3;
+  });
+  renderer.render(scene, camera);
+}
+animate();
+
+// ---- SCROLL REVEAL ----
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'), i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.12});
+reveals.forEach(r=>obs.observe(r));
+
+// ---- SKILL BAR ANIMATION ----
+const barObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-bar-fill').forEach(b=>{
+        b.style.width = b.dataset.w + '%';
       });
-    </script>
-    <script id="back-to-top-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const backToTopButton = document.getElementById("back-to-top");
-        // Show/hide back to top button based on scroll position
-        window.addEventListener("scroll", function () {
-          if (window.pageYOffset > 300) {
-            backToTopButton.classList.remove("opacity-0", "invisible");
-            backToTopButton.classList.add("opacity-100", "visible");
-          } else {
-            backToTopButton.classList.remove("opacity-100", "visible");
-            backToTopButton.classList.add("opacity-0", "invisible");
-          }
-        });
-        // Scroll to top when button is clicked
-        backToTopButton.addEventListener("click", function () {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
-      });
-    </script>
-    <script id="project-filter-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const projectCards = document.querySelectorAll(".project-card");
-        // Filter projects based on category
-        filterButtons.forEach((button) => {
-          button.addEventListener("click", function () {
-            const filter = this.getAttribute("data-filter");
-            // Update active button
-            filterButtons.forEach((btn) => {
-              btn.classList.remove("bg-primary", "text-white");
-              btn.classList.add("text-gray-700");
-            });
-            this.classList.add("bg-primary", "text-white");
-            this.classList.remove("text-gray-700");
-            // Filter projects
-            projectCards.forEach((card) => {
-              const categories = card.getAttribute("data-category").split(" ");
-              if (filter === "all" || categories.includes(filter)) {
-                card.style.display = "block";
-              } else {
-                card.style.display = "none";
-              }
-            });
-          });
-        });
-      });
-    </script>
-    <script id="contact-form-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        const contactForm = document.getElementById("contact-form");
-        contactForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          // Get form values
-          const name = document.getElementById("name").value;
-          const email = document.getElementById("email").value;
-          const subject = document.getElementById("subject").value;
-          const message = document.getElementById("message").value;
-          // Normally you would send this data to a server
-          // For demo purposes, we'll just show an alert
-          alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
-          // Reset form
-          contactForm.reset();
-        });
-      });
-    </script>
-    <script id="skill-animation-script">
-      document.addEventListener("DOMContentLoaded", function () {
-        // Animate skill bars when they come into view
-        const skillBars = document.querySelectorAll(".skill-progress");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.style.width =
-                  entry.target.parentElement.previousElementSibling.querySelector(
-                    "span:last-child",
-                  ).textContent;
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1 },
-        );
-        skillBars.forEach((bar) => {
-          bar.style.width = "0%";
-          observer.observe(bar);
-        });
-      });
-    </script>
-  </body>
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.skill-card').forEach(c=>barObs.observe(c));
+</script>
+</body>
 </html>
